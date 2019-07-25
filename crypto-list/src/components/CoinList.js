@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // Objects
+import Coin from "./Coin";
 import Loader from "react-loader-spinner";
 import { fetchApi } from "../actions";
 
@@ -23,7 +24,7 @@ const CoinList = props => {
       <button onClick={fetchApi}>fetch API</button>
       {props.coinList.length > 0 ? (
         props.coinList.map(coin => {
-          return <Coin coin={coin} />;
+          return <Coin coin={coin} key={coin.id} />;
         })
       ) : (
         <div> Hit fetch API to see coins </div>
