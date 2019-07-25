@@ -1,9 +1,46 @@
+// Dependencies
 import React from "react";
 import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
 
-const CoinList = () => {
-  return <div>Coin List incoming </div>;
+// Objects
+import Loader from "react-loader-spinner";
+import { fetchApi } from "../actions";
+
+// Styles
+
+const CoinList = props => {
+  const fetchApi = event => {
+    event.preventDefault();
+    props.fetchApi();
+  };
+
+  if (props.isFetching) {
+    return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
+  }
+
+  return (
+    <div>
+      <button onClick={fetchApi}>fetch API</button>
+      {props.coinList.length > 0 ? (
+        props.coinList.map(coin => {
+          return <Coin coin={coin} />;
+        })
+      ) : (
+        <div> Hit fetch API to see coins </div>
+      )}
+    </div>
+  );
 };
 
-export default CoinList;
+const mapStateToProps = state => {
+  console.log("CoinList mapStateToProps state", state);
+  return {
+    error: state.error,
+    isFetching: state.isFetching,
+    coinList: state.coinList
+  };
+};
+export default connect(
+  mapStateToProps,
+  { fetchApi }
+)(CoinList);
