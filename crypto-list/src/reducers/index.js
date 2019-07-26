@@ -15,8 +15,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         error: "",
-        isFetching: true,
-        coinList: ""
+        isFetching: true
       };
     case FETCH_SUCCESS:
       return {
@@ -29,8 +28,7 @@ export const rooterReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         error: payload,
-        isFetching: false,
-        coinList: ""
+        isFetching: false
       };
     default:
       return state;

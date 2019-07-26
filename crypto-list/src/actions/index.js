@@ -1,6 +1,8 @@
 // Dependencies
 import axios from "axios";
 
+// Objects
+
 import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "./types";
 
 export const fetchApi = () => dispatch => {

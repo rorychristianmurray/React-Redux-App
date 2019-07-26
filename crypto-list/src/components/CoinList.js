@@ -1,5 +1,5 @@
 // Dependencies
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 // Objects
@@ -10,10 +10,10 @@ import { fetchApi } from "../actions";
 // Styles
 
 const CoinList = props => {
-  const fetchApi = event => {
-    event.preventDefault();
+  useEffect(() => {
     props.fetchApi();
-  };
+  }, []);
+
 
   if (props.isFetching) {
     return <Loader type="Puff" color="#00BFFF" height="100" width="100" />;
@@ -27,7 +27,7 @@ const CoinList = props => {
           return <Coin coin={coin} key={coin.id} />;
         })
       ) : (
-        <div> Hit fetch API to see coins </div>
+        <div> Coins incoming! </div>
       )}
     </div>
   );
